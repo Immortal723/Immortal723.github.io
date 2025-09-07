@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑客终端</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #000;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        .terminal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2;
+            overflow-y: auto;
+        }
+        .terminal-header {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #0f0;
+            padding-bottom: 10px;
+        }
+        .terminal-title {
+            font-size: 24px;
+            text-align: center;
+            text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
+            animation: flicker 2s infinite;
+        }
+        .command-line {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .prompt {
+            color: #0f0;
+            margin-right: 10px;
+        }
+        .command {
+            background: none;
+            border: none;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            flex: 1;
+            outline: none;
+        }
+        .output {
+            margin-left: 20px;
+            line-height: 1.5;
+            animation: fadeIn 0.5s ease-in;
+        }
+        .glitch {
+            position: relative;
+            color: #0f0;
+        }
+        .glitch:before, .glitch:after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .glitch:before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00ff;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        .glitch:after {
+            left: -2px;
+            text-shadow: -2px 0 #00ffff;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim2 3s infinite linear alternate-reverse;
+        }
+        .data-stream {
+            position: absolute;
+            font-size: 12px;
+            color: rgba(0, 255, 0, 0.3);
+            white-space: nowrap;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 255, 0, 0.3);
+            z-index: 3;
+            animation: scanline 6s linear infinite;
+        }
+        @keyframes flicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+                opacity: 1;
+            }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+                opacity: 0.4;
+            }
+        }
+        @keyframes glitch-anim {
+            0% { clip: rect(13px, 9999px, 14px, 0); }
+            20% { clip: rect(44px, 9999px, 59px, 0); }
+            40% { clip: rect(67px, 9999px, 33px, 0); }
+            60% { clip: rect(51px, 9999px, 82px, 0); }
+            80% { clip: rect(18px, 9999px, 5px, 0); }
+            100% { clip: rect(43px, 9999px, 95px, 0); }
+        }
+        @keyframes glitch-anim2 {
+            0% { clip: rect(63px, 9999px, 66px, 0); }
+            20% { clip: rect(28px, 9999px, 52px, 0); }
+            40% { clip: rect(50px, 9999px, 83px, 0); }
+            60% { clip: rect(26px, 9999px, 12px, 0); }
+            80% { clip: rect(60px, 9999px, 48px, 0); }
+            100% { clip: rect(54px, 9999px, 89px, 0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes scanline {
+            0% { top: -5%; }
+            100% { top: 105%; }
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="scanline"></div>
+    <canvas id="canvas"></canvas>
+    <div id="data-streams"></div>
+    <div class="terminal">
+        <div class="terminal-header">
+            <div class="terminal-title glitch" data-text="SYSTEM//ACCESS_GRANTED"></div>
+        </div>
+        <div class="output">
+            <p>欢迎使用黑客终端 v3.1.4</p>
+            <p>正在初始化系统...</p>
+            <p class="glitch" data-text="警告: 未授权访问将被追踪"></p>
+            <p>系统状态: <span id="status">在线</span></p>
+        </div>
+        <div class="command-line">
+            <span class="prompt">></span>
+            <input type="text" class="command" placeholder="输入命令..." autofocus>
+        </div>
+    </div>
+
+    <script>
+        // 获取Canvas元素
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // 设置Canvas大小
+        function resizeCanvas() {
+            canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // 代码雨配置
+        const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*(){}[]<>,./?"; 
+        const fontSize = 14;
+        const columns = Math.floor(canvas.width / fontSize);
+        const drops = [];
+        
+        // 初始化每列的起始位置
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.random() * -100;
+        }
+        
+        // 颜色数组，用于代码雨的颜色变化
+        const colors = [
+            '#00FF00', '#33FF33', '#66FF66', '#99FF99',
+            '#00CC00', '#33CC33', '#66CC66', '#99CC99'
+        ];
+        
+        // 绘制代码雨
+        function drawRain() {
+            // 半透明背景，创造拖尾效果
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // 设置字体
+            ctx.font = `${fontSize}px 'Courier New', monospace`;
+            
+            // 逐列绘制
+            for (let i = 0; i < drops.length; i++) {
+                // 随机选择字符和颜色
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                ctx.fillStyle = color;
+                
+                // 绘制字符
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                // 随机速度
+                const speed = 1 + Math.random() * 2;
+                
+                // 重置
+                if (drops[i] * fontSize > canvas.height || Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                
+                // 下落
+                drops[i] += speed;
+            }
+        }
+        
+        // 创建随机数据流
+        function createDataStreams() {
+            const container = document.getElementById('data-streams');
+            const streamCount = Math.floor(canvas.width / 200);
+            
+            for (let i = 0; i < streamCount; i++) {
+                const stream = document.createElement('div');
+                stream.className = 'data-stream';
+                stream.style.left = `${Math.random() * 100}%`;
+                stream.style.top = `${Math.random() * 100}%`;
+                stream.style.animation = `fadeIn 1s ease-in-out ${Math.random() * 5}s infinite`;
+                stream.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                // 生成随机数据流
+                let data = '';
+                const length = Math.floor(Math.random() * 20) + 10;
+                for (let j = 0; j < length; j++) {
+                    data += chars[Math.floor(Math.random() * chars.length)];
+                }
+                
+                stream.textContent = data;
+                container.appendChild(stream);
+            }
+        }
+        
+        // 鼠标波纹效果
+        const mouseRipples = [];
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseRipples.push({
+                x: e.clientX,
+                y: e.clientY,
+                radius: 0,
+                maxRadius: 100 + Math.random() * 50,
+                alpha: 0.5,
+                color: colors[Math.floor(Math.random() * colors.length)]
+            });
+        });
+        
+        function drawMouseRipples() {
+            ctx.save();
+            
+            for (let i = 0; i < mouseRipples.length; i++) {
+                const ripple = mouseRipples[i];
+                
+                ctx.beginPath();
+                ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
+                ctx.strokeStyle = `${ripple.color}${Math.floor(ripple.alpha * 255).toString(16).padStart(2, '0')}`;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // 更新波纹
+                ripple.radius += 3;
+                ripple.alpha -= 0.02;
+                
+                // 移除消失的波纹
+                if (ripple.alpha <= 0 || ripple.radius >= ripple.maxRadius) {
+                    mouseRipples.splice(i, 1);
+                    i--;
+                }
+            }
+            
+            ctx.restore();
+        }
+        
+        // 终端命令处理
+        const commandInput = document.querySelector('.command');
+        const terminal = document.querySelector('.terminal');
+        
+        commandInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const command = commandInput.value;
+                commandInput.value = '';
+                
+                // 添加命令到输出
+                const commandLine = document.createElement('div');
+                commandLine.className = 'output';
+                commandLine.innerHTML = `<span class="prompt">></span> ${command}`;
+                terminal.insertBefore(commandLine, commandInput.parentNode);
+                
+                // 处理命令
+                setTimeout(() => {
+                    const response = document.createElement('div');
+                    response.className = 'output';
+                    
+                    if (command.toLowerCase() === 'help') {
+                        response.innerHTML = '可用命令: <br>- status: 显示系统状态<br>- clear: 清屏<br>- scan: 扫描网络<br>- exit: 退出系统';
+                    } else if (command.toLowerCase() === 'status') {
+                        response.textContent = '系统状态: 安全级别 - 高, 连接数 - 12, CPU使用率 - 14.3%, 内存使用率 - 22.8%';
+                    } else if (command.toLowerCase() === 'clear') {
+                        const outputs = document.querySelectorAll('.output');
+                        outputs.forEach(output => output.remove());
+                        return;
+                    } else if (command.toLowerCase() === 'scan') {
+                        response.innerHTML = '<span class="glitch" data-text="正在扫描网络..."></span>';
+                        setTimeout(() => {
+                            response.innerHTML += '<br>发现 32 个活跃设备';
+                            setTimeout(() => {
+                                response.innerHTML += '<br>识别到 5 个开放端口';
+                                setTimeout(() => {
+                                    response.innerHTML += '<br>扫描完成';
+                                }, 1500);
+                            }, 1000);
+                        }, 2000);
+                    } else if (command.toLowerCase() === 'exit') {
+                        response.textContent = '正在关闭系统...';
+                        setTimeout(() => {
+                            document.body.style.opacity = '0';
+                            setTimeout(() => {
+                                window.close();
+                            }, 1000);
+                        }, 1000);
+                    } else {
+                        response.textContent = `未知命令: ${command} - 输入 help 获取帮助`;
+                    }
+                    
+                    terminal.insertBefore(response, commandInput.parentNode);
+                    terminal.scrollTop = terminal.scrollHeight;
+                }, 300);
+                
+                terminal.scrollTop = terminal.scrollHeight;
+            }
+        });
+        
+        // 主动画循环
+        function animate() {
+            requestAnimationFrame(animate);
+            drawRain();
+            drawMouseRipples();
+        }
+        
+        // 启动动画
+        createDataStreams();
+        animate();
+        
+        // 模拟系统消息
+        setTimeout(() => {
+            const msg1 = document.createElement('div');
+            msg1.className = 'output';
+            msg1.textContent = '[SYSTEM] 检测到网络活动';
+            terminal.insertBefore(msg1, commandInput.parentNode);
+            terminal.scrollTop = terminal.scrollHeight;
+        }, 5000);
+        
+        setTimeout(() => {
+            const msg2 = document.createElement('div');
+            msg2.className = 'output';
+            msg2.innerHTML = '[SECURITY] <span class="glitch" data-text="防火墙已激活"></span>';
+            terminal.insertBefore(msg2, commandInput.parentNode);
+            terminal.scrollTop = terminal.scrollHeight;
+        }, 8000);
+    </script>
+</body>
+</html>
