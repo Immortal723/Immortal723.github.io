@@ -1,394 +1,560 @@
+html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>黑客终端</title>
+    <title>网络安全技术研讨会 - 会员登录</title>
+    <link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-100-M/font-awesome/6.0.0/css/all.min.css"  rel="stylesheet">
+    <link href="https://s2.ssl.qhres2.com/static/56662140ef7d5d03.css"  rel="stylesheet">
     <style>
-        * {
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyMDQsMjA0LDIwNCwwLjEpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+');
         }
-        body {
-            background-color: #000;
-            color: #0f0;
-            font-family: 'Courier New', monospace;
-            overflow: hidden;
-            height: 100vh;
-            width: 100vw;
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
             position: relative;
         }
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            display: inline-block;
+            position: relative;
         }
-        .terminal {
+        
+        .logo::after {
+            content: "";
             position: absolute;
-            top: 0;
+            bottom: -10px;
             left: 0;
             width: 100%;
-            height: 100%;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 2;
-            overflow-y: auto;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 3px;
         }
-        .terminal-header {
-            margin-bottom: 20px;
-            border-bottom: 1px solid #0f0;
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .login-section {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 450px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .login-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .login-title {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
             padding-bottom: 10px;
         }
-        .terminal-title {
-            font-size: 24px;
-            text-align: center;
-            text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
-            animation: flicker 2s infinite;
+        
+        .login-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
         }
-        .command-line {
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .remember-me {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
         }
-        .prompt {
-            color: #0f0;
-            margin-right: 10px;
+        
+        .remember-me input {
+            margin-right: 8px;
         }
-        .command {
-            background: none;
-            border: none;
-            color: #0f0;
-            font-family: 'Courier New', monospace;
-            font-size: 16px;
-            flex: 1;
-            outline: none;
+        
+        .forgot-password {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
         }
-        .output {
-            margin-left: 20px;
-            line-height: 1.5;
-            animation: fadeIn 0.5s ease-in;
+        
+        .forgot-password:hover {
+            text-decoration: underline;
         }
-        .glitch {
+        
+        .social-login {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .social-login p {
             position: relative;
-            color: #0f0;
+            margin-bottom: 1.5rem;
+            color: #7f8c8d;
         }
-        .glitch:before, .glitch:after {
-            content: attr(data-text);
+        
+        .social-login p::before,
+        .social-login p::after {
+            content: "";
             position: absolute;
-            top: 0;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background-color: #ddd;
+        }
+        
+        .social-login p::before {
             left: 0;
-            width: 100%;
-            height: 100%;
         }
-        .glitch:before {
-            left: 2px;
-            text-shadow: -2px 0 #ff00ff;
-            clip: rect(24px, 550px, 90px, 0);
-            animation: glitch-anim 5s infinite linear alternate-reverse;
+        
+        .social-login p::after {
+            right: 0;
         }
-        .glitch:after {
-            left: -2px;
-            text-shadow: -2px 0 #00ffff;
-            clip: rect(85px, 550px, 140px, 0);
-            animation: glitch-anim2 3s infinite linear alternate-reverse;
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
         }
-        .data-stream {
-            position: absolute;
-            font-size: 12px;
-            color: rgba(0, 255, 0, 0.3);
-            white-space: nowrap;
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+        
+        .facebook {
+            background-color: #3b5998;
+        }
+        
+        .twitter {
+            background-color: #1da1f2;
+        }
+        
+        .google {
+            background-color: #db4437;
+        }
+        
+        .linkedin {
+            background-color: #0077b5;
+        }
+        
+        .info-section {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+        }
+        
+        .info-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .info-title {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-title i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .info-text {
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .feature-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-item i {
+            color: var(--success-color);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .event-card {
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            position: relative;
             overflow: hidden;
+        }
+        
+        .event-card::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .event-card::after {
+            content: "";
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .event-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
             z-index: 1;
         }
-        .scanline {
+        
+        .event-date {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .event-description {
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .event-btn {
+            background-color: white;
+            color: var(--secondary-color);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .event-btn:hover {
+            background-color: #f1f1f1;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem 0;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .footer-text {
+            margin-bottom: 1rem;
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .login-section,
+            .info-section {
+                max-width: 100%;
+            }
+        }
+        
+        /* 手绘风格元素 */
+        .hand-drawn {
+            position: relative;
+        }
+        
+        .hand-drawn::after {
+            content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(0, 255, 0, 0.3);
-            z-index: 3;
-            animation: scanline 6s linear infinite;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px dashed rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            pointer-events: none;
         }
-        @keyframes flicker {
-            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
-                opacity: 1;
-            }
-            20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
-                opacity: 0.4;
-            }
+        
+        .sketch-icon {
+            display: inline-block;
+            background-color: #f8f9fa;
+            border: 2px solid #333;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            font-style: normal;
+            font-weight: bold;
+            transform: rotate(-5deg);
         }
-        @keyframes glitch-anim {
-            0% { clip: rect(13px, 9999px, 14px, 0); }
-            20% { clip: rect(44px, 9999px, 59px, 0); }
-            40% { clip: rect(67px, 9999px, 33px, 0); }
-            60% { clip: rect(51px, 9999px, 82px, 0); }
-            80% { clip: rect(18px, 9999px, 5px, 0); }
-            100% { clip: rect(43px, 9999px, 95px, 0); }
-        }
-        @keyframes glitch-anim2 {
-            0% { clip: rect(63px, 9999px, 66px, 0); }
-            20% { clip: rect(28px, 9999px, 52px, 0); }
-            40% { clip: rect(50px, 9999px, 83px, 0); }
-            60% { clip: rect(26px, 9999px, 12px, 0); }
-            80% { clip: rect(60px, 9999px, 48px, 0); }
-            100% { clip: rect(54px, 9999px, 89px, 0); }
-        }
+        
+        /* 动画效果 */
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes scanline {
-            0% { top: -5%; }
-            100% { top: 105%; }
+        
+        .animated {
+            animation: fadeIn 0.6s ease-out forwards;
         }
-        ::-webkit-scrollbar {
-            width: 8px;
+        
+        .delay-1 {
+            animation-delay: 0.2s;
         }
-        ::-webkit-scrollbar-track {
-            background: #000;
+        
+        .delay-2 {
+            animation-delay: 0.4s;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #0f0;
+        
+        .delay-3 {
+            animation-delay: 0.6s;
         }
     </style>
 </head>
 <body>
-    <div class="scanline"></div>
-    <canvas id="canvas"></canvas>
-    <div id="data-streams"></div>
-    <div class="terminal">
-        <div class="terminal-header">
-            <div class="terminal-title glitch" data-text="SYSTEM//ACCESS_GRANTED"></div>
-        </div>
-        <div class="output">
-            <p>欢迎使用黑客终端 v3.1.4</p>
-            <p>正在初始化系统...</p>
-            <p class="glitch" data-text="警告: 未授权访问将被追踪"></p>
-            <p>系统状态: <span id="status">在线</span></p>
-        </div>
-        <div class="command-line">
-            <span class="prompt">></span>
-            <input type="text" class="command" placeholder="输入命令..." autofocus>
+    <div class="container">
+        <header class="animated">
+            <div class="logo hand-drawn">CyberSecurity<span style="color: var(--accent-color);">Pro</span></div>
+            <div class="tagline">2025年度网络安全技术研讨会 - 会员专属内容</div>
+        </header>
+        
+        <div class="main-content">
+            <section class="login-section animated delay-1 hand-drawn">
+                <h2 class="login-title"><i class="fas fa-lock"></i> 会员登录</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">电子邮箱</label>
+                        <input type="email" id="email" class="form-control" placeholder="请输入您的注册邮箱" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码</label>
+                        <input type="password" id="password" class="form-control" placeholder="请输入您的密码" required>
+                    </div>
+                    <div class="remember-forgot">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">记住我</label>
+                        </div>
+                        <a href="#" class="forgot-password">忘记密码?</a>
+                    </div>
+                    <button type="submit" class="btn">登 录</button>
+                    
+                    <div class="social-login">
+                        <p>或使用社交账号登录</p>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon google"><i class="fab fa-google"></i></a>
+                            <a href="#" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </form>
+            </section>
+            
+            <section class="info-section">
+                <div class="info-card animated delay-2 hand-drawn">
+                    <h3 class="info-title"><i class="fas fa-shield-alt"></i> 最新网络安全威胁报告</h3>
+                    <p class="info-text">2025年第一季度，我们发现了12种新型网络钓鱼手法，相比去年同期增长了35%。登录后即可查看完整报告及防护建议。</p>
+                    <ul class="feature-list">
+                        <li class="feature-item"><i class="fas fa-check-circle"></i> 鱼叉式钓鱼攻击分析</li>
+                        <li class="feature-item"><i class="fas fa-check-circle"></i> 灯笼式钓鱼技术解密</li>
+                        <li class="feature-item"><i class="fas fa-check-circle"></i> 商业邮件欺诈案例研究</li>
+                        <li class="feature-item"><i class="fas fa-check-circle"></i> 恶意Wi-Fi热点检测方法</li>
+                    </ul>
+                </div>
+                
+                <div class="event-card animated delay-3">
+                    <div class="event-date">2025.10.15-17</div>
+                    <h3 class="event-title">全球网络安全峰会</h3>
+                    <p class="event-description">年度最重要的网络安全盛会，汇集全球顶尖安全专家。会员可享受早鸟票价及专属研讨会席位。</p>
+                    <button class="btn event-btn">立即预订席位</button>
+                </div>
+            </section>
         </div>
     </div>
-
+    
+    <footer>
+        <p class="footer-text">关注我们获取更多网络安全资讯</p>
+        <p class="copyright">© 2025 CyberSecurityPro 版权所有</p>
+        <p style="font-size:16pt;color:#999;margin-top:20px;">/p>
+    </footer>
+ 
     <script>
-        // 获取Canvas元素
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
-        
-        // 设置Canvas大小
-        function resizeCanvas() {
-            canvas.height = window.innerHeight;
-            canvas.width = window.innerWidth;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-        
-        // 代码雨配置
-        const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*(){}[]<>,./?"; 
-        const fontSize = 14;
-        const columns = Math.floor(canvas.width / fontSize);
-        const drops = [];
-        
-        // 初始化每列的起始位置
-        for (let i = 0; i < columns; i++) {
-            drops[i] = Math.random() * -100;
-        }
-        
-        // 颜色数组，用于代码雨的颜色变化
-        const colors = [
-            '#00FF00', '#33FF33', '#66FF66', '#99FF99',
-            '#00CC00', '#33CC33', '#66CC66', '#99CC99'
-        ];
-        
-        // 绘制代码雨
-        function drawRain() {
-            // 半透明背景，创造拖尾效果
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        document.getElementById('loginForm').addEventListener('submit',  function(e) {
+            e.preventDefault(); 
+            const email = document.getElementById('email').value; 
+            const password = document.getElementById('password').value; 
             
-            // 设置字体
-            ctx.font = `${fontSize}px 'Courier New', monospace`;
+            // 这里可以添加表单验证逻辑
+            console.log(' 登录尝试:', {email, password});
             
-            // 逐列绘制
-            for (let i = 0; i < drops.length; i++) {
-                // 随机选择字符和颜色
-                const text = chars[Math.floor(Math.random() * chars.length)];
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                
-                ctx.fillStyle = color;
-                
-                // 绘制字符
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                
-                // 随机速度
-                const speed = 1 + Math.random() * 2;
-                
-                // 重置
-                if (drops[i] * fontSize > canvas.height || Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                
-                // 下落
-                drops[i] += speed;
-            }
-        }
+            // 模拟登录处理 
+            setTimeout(() => {
+                alert('登录信息已提交，请稍候...');
+            }, 500);
+        });
         
-        // 创建随机数据流
-        function createDataStreams() {
-            const container = document.getElementById('data-streams');
-            const streamCount = Math.floor(canvas.width / 200);
+        // 添加手绘风格的动态效果
+        document.querySelectorAll('.hand-drawn').forEach(el  => {
+            el.addEventListener('mouseenter',  function() {
+                this.style.transform  = 'rotate(-1deg)';
+            });
             
-            for (let i = 0; i < streamCount; i++) {
-                const stream = document.createElement('div');
-                stream.className = 'data-stream';
-                stream.style.left = `${Math.random() * 100}%`;
-                stream.style.top = `${Math.random() * 100}%`;
-                stream.style.animation = `fadeIn 1s ease-in-out ${Math.random() * 5}s infinite`;
-                stream.style.opacity = Math.random() * 0.5 + 0.1;
-                
-                // 生成随机数据流
-                let data = '';
-                const length = Math.floor(Math.random() * 20) + 10;
-                for (let j = 0; j < length; j++) {
-                    data += chars[Math.floor(Math.random() * chars.length)];
-                }
-                
-                stream.textContent = data;
-                container.appendChild(stream);
-            }
-        }
-        
-        // 鼠标波纹效果
-        const mouseRipples = [];
-        
-        document.addEventListener('mousemove', (e) => {
-            mouseRipples.push({
-                x: e.clientX,
-                y: e.clientY,
-                radius: 0,
-                maxRadius: 100 + Math.random() * 50,
-                alpha: 0.5,
-                color: colors[Math.floor(Math.random() * colors.length)]
+            el.addEventListener('mouseleave',  function() {
+                this.style.transform  = 'rotate(0)';
             });
         });
-        
-        function drawMouseRipples() {
-            ctx.save();
-            
-            for (let i = 0; i < mouseRipples.length; i++) {
-                const ripple = mouseRipples[i];
-                
-                ctx.beginPath();
-                ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
-                ctx.strokeStyle = `${ripple.color}${Math.floor(ripple.alpha * 255).toString(16).padStart(2, '0')}`;
-                ctx.lineWidth = 2;
-                ctx.stroke();
-                
-                // 更新波纹
-                ripple.radius += 3;
-                ripple.alpha -= 0.02;
-                
-                // 移除消失的波纹
-                if (ripple.alpha <= 0 || ripple.radius >= ripple.maxRadius) {
-                    mouseRipples.splice(i, 1);
-                    i--;
-                }
-            }
-            
-            ctx.restore();
-        }
-        
-        // 终端命令处理
-        const commandInput = document.querySelector('.command');
-        const terminal = document.querySelector('.terminal');
-        
-        commandInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                const command = commandInput.value;
-                commandInput.value = '';
-                
-                // 添加命令到输出
-                const commandLine = document.createElement('div');
-                commandLine.className = 'output';
-                commandLine.innerHTML = `<span class="prompt">></span> ${command}`;
-                terminal.insertBefore(commandLine, commandInput.parentNode);
-                
-                // 处理命令
-                setTimeout(() => {
-                    const response = document.createElement('div');
-                    response.className = 'output';
-                    
-                    if (command.toLowerCase() === 'help') {
-                        response.innerHTML = '可用命令: <br>- status: 显示系统状态<br>- clear: 清屏<br>- scan: 扫描网络<br>- exit: 退出系统';
-                    } else if (command.toLowerCase() === 'status') {
-                        response.textContent = '系统状态: 安全级别 - 高, 连接数 - 12, CPU使用率 - 14.3%, 内存使用率 - 22.8%';
-                    } else if (command.toLowerCase() === 'clear') {
-                        const outputs = document.querySelectorAll('.output');
-                        outputs.forEach(output => output.remove());
-                        return;
-                    } else if (command.toLowerCase() === 'scan') {
-                        response.innerHTML = '<span class="glitch" data-text="正在扫描网络..."></span>';
-                        setTimeout(() => {
-                            response.innerHTML += '<br>发现 32 个活跃设备';
-                            setTimeout(() => {
-                                response.innerHTML += '<br>识别到 5 个开放端口';
-                                setTimeout(() => {
-                                    response.innerHTML += '<br>扫描完成';
-                                }, 1500);
-                            }, 1000);
-                        }, 2000);
-                    } else if (command.toLowerCase() === 'exit') {
-                        response.textContent = '正在关闭系统...';
-                        setTimeout(() => {
-                            document.body.style.opacity = '0';
-                            setTimeout(() => {
-                                window.close();
-                            }, 1000);
-                        }, 1000);
-                    } else {
-                        response.textContent = `未知命令: ${command} - 输入 help 获取帮助`;
-                    }
-                    
-                    terminal.insertBefore(response, commandInput.parentNode);
-                    terminal.scrollTop = terminal.scrollHeight;
-                }, 300);
-                
-                terminal.scrollTop = terminal.scrollHeight;
-            }
-        });
-        
-        // 主动画循环
-        function animate() {
-            requestAnimationFrame(animate);
-            drawRain();
-            drawMouseRipples();
-        }
-        
-        // 启动动画
-        createDataStreams();
-        animate();
-        
-        // 模拟系统消息
-        setTimeout(() => {
-            const msg1 = document.createElement('div');
-            msg1.className = 'output';
-            msg1.textContent = '[SYSTEM] 检测到网络活动';
-            terminal.insertBefore(msg1, commandInput.parentNode);
-            terminal.scrollTop = terminal.scrollHeight;
-        }, 5000);
-        
-        setTimeout(() => {
-            const msg2 = document.createElement('div');
-            msg2.className = 'output';
-            msg2.innerHTML = '[SECURITY] <span class="glitch" data-text="防火墙已激活"></span>';
-            terminal.insertBefore(msg2, commandInput.parentNode);
-            terminal.scrollTop = terminal.scrollHeight;
-        }, 8000);
     </script>
 </body>
 </html>
